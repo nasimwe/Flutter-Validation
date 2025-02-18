@@ -195,6 +195,10 @@ class RegisterFormState extends State<RegisterForm> {
         
         
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent,
+                foregroundColor: Colors.white,
+              ),
           onPressed: () {
         
             print(_emailcontroller.text);
@@ -218,7 +222,14 @@ class RegisterFormState extends State<RegisterForm> {
         
           children: [
              Text("Already have an account"),
-            ElevatedButton(onPressed: (){
+             const SizedBox(width: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent,
+                foregroundColor: Colors.white,
+              ),
+              
+              onPressed: (){
         
              Navigator.push(
             context,
