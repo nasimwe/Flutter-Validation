@@ -79,17 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
+        
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+
         title: Text(widget.title),
       ),
       body: Center(
 
-        child: MyCustomForm(),
+        child: RegisterForm(),
 
 
 
@@ -101,19 +98,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 // Define a custom Form widget.
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({super.key});
 
   @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
+  RegisterFormState createState() {
+    return RegisterFormState();
   }
 }
 
 
-class MyCustomFormState extends State<MyCustomForm> {
+class RegisterFormState extends State<RegisterForm> {
 
   final _formKey = GlobalKey<FormState>();
+   final TextEditingController _namecontroller =TextEditingController();
     final TextEditingController _emailcontroller = TextEditingController();
       final TextEditingController _phonecontroller = TextEditingController();
         final TextEditingController _addrescontroller = TextEditingController();
@@ -123,102 +121,116 @@ class MyCustomFormState extends State<MyCustomForm> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child:  Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+      child:  Container(
+        margin: EdgeInsets.all(10) ,
+        child: Column(
           
-     const SizedBox(height: 15),
-     TextFormField(
-      controller: _emailcontroller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: "Email",
-      ),
-  // The validator receives the text that the user has entered.
- 
- validator: (value) {
-   print("email validated ${_emailcontroller.text} ${ EmailValidator.validate(_emailcontroller.text)}");
-    if (value == null || value.isEmpty) {
-      return 'Please enter your email';
-    }  else  if  (! EmailValidator.validate(_emailcontroller.text)){
-         return 'Please valid email';
-    }
-    return null;
-  
-  },
-),
-
-const SizedBox(height: 15),
-TextFormField(
-  controller: _phonecontroller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: "Name",
-      ),
-  // The validator receives the text that the user has entered.
-  validator: (value) {
-   print("email validated ${_emailcontroller.text} ${ EmailValidator.validate(_emailcontroller.text)}");
-    if (value == null || value.isEmpty) {
-      return 'Please enter ';
-    } 
-    return null;
-  },
-),
-const SizedBox(height: 15),
-TextFormField(
-  controller: _addrescontroller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: "Contact",
-      ),
-  // The validator receives the text that the user has entered.
-  validator: (value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter some text';
-    }
-    return null;
-  },
-),
-
-
-
-
-ElevatedButton(
-  onPressed: () {
-
-    print(_emailcontroller.text);
-    // Validate returns true if the form is valid, or false otherwise.
-    if (_formKey.currentState!.validate()) {
-      // If the form is valid, display a snackbar. In the real world,
-      // you'd often call a server or save the information in a database.
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Processing Data')),
-      );
-    }
-  },
-  child: const Text('Submit'),
-
-
-
-),
-
-const SizedBox(height: 50),
-Row(
-
-  children: [
-     Text("Already have an account"),
-    ElevatedButton(onPressed: (){
-
-     Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const LoginScreen()),
-  );
-
-    }, child: Text("Login"))
-  ],
-
-)
-        ],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+        
+             const SizedBox(height: 15),
+             TextFormField(
+        controller: _namecontroller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          hintText: "Name",
+        ),),
+        
+             
+             SizedBox(height: 15),
+             TextFormField(
+        controller: _emailcontroller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          hintText: "Email",
+        ),
+          // The validator receives the text that the user has entered.
+        
+        
+         validator: (value) {
+           print("email validated ${_emailcontroller.text} ${ EmailValidator.validate(_emailcontroller.text)}");
+            if (value == null || value.isEmpty) {
+        return 'Please enter your email';
+            }  else  if  (! EmailValidator.validate(_emailcontroller.text)){
+           return 'Please enter a valid email';
+            }
+            return null;
+          
+          },
+        ),
+        
+        const SizedBox(height: 15),
+        TextFormField(
+          controller: _phonecontroller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          hintText: "Address",
+        ),
+          // The validator receives the text that the user has entered.
+          
+         validator: (value) {
+            if (value == null || value.isEmpty) {
+        return 'Please enter your address ';
+            } 
+            return null;
+          },
+        ),
+        const SizedBox(height: 15),
+        TextFormField(
+          controller: _addrescontroller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          hintText: "Contact",
+        ),
+          // The validator receives the text that the user has entered.
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+        return 'Please enter Your Contact';
+            }
+            return null;
+          },
+        ),
+        
+        
+        
+        
+        ElevatedButton(
+          onPressed: () {
+        
+            print(_emailcontroller.text);
+            // Validate returns true if the form is valid, or false otherwise.
+            if (_formKey.currentState!.validate()) {
+        // If the form is valid, display a snackbar. In the real world,
+        // you'd often call a server or save the information in a database.
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Processing Data')),
+        );
+            }
+          },
+          child: const Text('Submit'),
+        
+        
+        
+        ),
+        
+        const SizedBox(height: 50),
+        Row(
+        
+          children: [
+             Text("Already have an account"),
+            ElevatedButton(onPressed: (){
+        
+             Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+        
+            }, child: Text("Login"))
+          ],
+        
+        )
+          ],
+        ),
       ),
     );
   }
