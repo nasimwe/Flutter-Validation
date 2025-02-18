@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
@@ -193,19 +193,19 @@ class RegisterFormState extends State<RegisterForm> {
         
         
         
-        
+        const SizedBox(height: 25),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueAccent,
                 foregroundColor: Colors.white,
               ),
+            
           onPressed: () {
         
             print(_emailcontroller.text);
             // Validate returns true if the form is valid, or false otherwise.
             if (_formKey.currentState!.validate()) {
-        // If the form is valid, display a snackbar. In the real world,
-        // you'd often call a server or save the information in a database.
+        
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Processing Data')),
         );
